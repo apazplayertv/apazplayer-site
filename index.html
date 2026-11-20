@@ -49,7 +49,8 @@ a{color:inherit;text-decoration:none}
 .logo{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.04em;font-size:1.12rem;margin-right:auto}
 .logo img{width:30px;height:27px}
 .logo b{font-weight:800}
-.logo span{font-weight:400;color:#c5d9e8}
+.logo .wm{display:inline-block;white-space:nowrap}
+.logo i{font-style:normal;font-weight:400;color:#c5d9e8}
 .nav a.l{font-size:.88rem;color:var(--muted);padding:8px 14px;border-radius:999px;transition:.2s}
 .nav a.l:hover{color:var(--text);background:rgba(255,255,255,.06)}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:999px;font-weight:600;font-size:1rem;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s;cursor:pointer;border:0;font-family:inherit}
@@ -209,7 +210,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
 
 <header class="nav">
   <div class="nav-in">
-    <a class="logo" href="#top" aria-label="ApazPlayer"><img src="assets/apaz-bird.svg" alt=""><b>apaz</b><span>player</span></a>
+    <a class="logo" href="#top" aria-label="ApazPlayer"><img src="assets/apaz-bird.svg" alt=""><span class="wm"><b>apaz</b><i>player</i></span></a>
     <a class="l" href="#fonctions">Fonctions</a>
     <a class="l" href="#plateformes">Plateformes</a>
     <a class="l" href="#demarrer">Démarrer</a>
@@ -387,7 +388,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
 <footer>
   <div class="wrap foot">
     <div>
-      <a class="logo" href="#top"><img src="assets/apaz-bird.svg" alt=""><b>apaz</b><span>player</span></a>
+      <a class="logo" href="#top"><img src="assets/apaz-bird.svg" alt=""><span class="wm"><b>apaz</b><i>player</i></span></a>
       <p>ApazPlayer est un lecteur multimédia. Il ne fournit, n'héberge ni ne vend aucun contenu : vous êtes responsable d'avoir le droit d'utiliser vos sources. Les versions ne sont pas signées par un store.</p>
     </div>
     <nav>
