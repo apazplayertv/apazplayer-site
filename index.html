@@ -680,6 +680,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
     setMeta('meta[property="og:title"]',d.meta_title);
     setMeta('meta[property="og:description"]',d.og_desc);
     if(sel) sel.value=l;
+    if(window.ApazVideo) window.ApazVideo(l);
   }
 
   var current='en';
@@ -717,13 +718,29 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
     if(!v||!btn||!box) return;
     var conn=navigator.connection||{};
     var small=window.innerWidth<900||conn.saveData;
-    v.src=small?'assets/presentation-720.mp4':'assets/presentation-1080.mp4';
     var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var auto=!reduce&&!conn.saveData;
+    var visible=false;
+    function play(){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+    // Vidéo française pour le site en français, anglaise pour toutes les autres langues.
+    function chooseVideo(l){
+      var fr=(l==='fr');
+      var src='assets/presentation'+(fr?'-fr':'')+'-'+(small?'720':'1080')+'.mp4';
+      var poster=fr?'assets/presentation-fr-poster.jpg':'assets/presentation-poster.jpg';
+      if(v.getAttribute('src')===src) return;
+      box.classList.remove('with-sound');
+      v.controls=false; v.muted=true; v.loop=true;
+      v.poster=poster;
+      v.src=src; v.load();
+      if(auto&&visible) play();
+    }
+    window.ApazVideo=chooseVideo;
+    if(!document.documentElement.classList.contains('pending')) chooseVideo(document.documentElement.lang);
     if(auto&&'IntersectionObserver' in window){
       new IntersectionObserver(function(es){es.forEach(function(e){
+        visible=e.isIntersecting;
         if(box.classList.contains('with-sound')) return;
-        if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+        if(e.isIntersecting){ if(v.getAttribute('src')) play(); }
         else v.pause();
       });},{threshold:.35}).observe(v);
     }
@@ -737,7 +754,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       if(!box.classList.contains('with-sound')) return;
       box.classList.remove('with-sound');
       v.controls=false; v.muted=true; v.loop=true;
-      if(auto){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+      if(auto&&visible) play();
     });
   })();
 
