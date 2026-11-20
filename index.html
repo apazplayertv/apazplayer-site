@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -18,7 +18,10 @@
 <meta property="og:image:alt" content="Logo ApazPlayer">
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/svg+xml" href="assets/apaz-bird.svg">
+<script>document.documentElement.classList.add('pending')</script>
 <style>
+.pending body{opacity:0}
+body{transition:opacity .25s ease}
 :root{
   --ink:#02050d;
   --ink-2:#070d1a;
@@ -35,13 +38,15 @@
   --radius:28px;
   --font:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Inter","Segoe UI Variable Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
+html[lang="ar"]{--font:"Segoe UI",Tahoma,"Noto Sans Arabic","Geeza Pro",Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;color-scheme:dark}
 body{background:var(--ink);color:var(--text);font-family:var(--font);line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 .wrap{width:min(1180px,100% - 48px);margin-inline:auto}
 .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+html[lang="ar"] h1,html[lang="ar"] h2{letter-spacing:0}
 
 /* ---------- ambient background ---------- */
 .aurora{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
@@ -53,14 +58,19 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;top:14px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 16px}
-.nav-in{display:flex;align-items:center;gap:6px;padding:8px 8px 8px 18px;border-radius:999px;background:rgba(10,16,30,.55);border:1px solid var(--line);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);width:min(860px,100%)}
-.logo{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.04em;font-size:1.12rem;margin-right:auto}
+.nav-in{display:flex;align-items:center;gap:6px;padding:8px;padding-inline-start:18px;border-radius:999px;background:rgba(10,16,30,.55);border:1px solid var(--line);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px);width:min(860px,100%)}
+.logo{display:flex;align-items:center;gap:9px;font-weight:700;letter-spacing:-.04em;font-size:1.12rem;margin-inline-end:auto;direction:ltr}
 .logo img{width:30px;height:27px}
 .logo b{font-weight:800}
 .logo .wm{display:inline-block;white-space:nowrap}
 .logo i{font-style:normal;font-weight:400;color:#c5d9e8}
 .nav a.l{font-size:.88rem;color:var(--muted);padding:8px 14px;border-radius:999px;transition:.2s}
 .nav a.l:hover{color:var(--text);background:rgba(255,255,255,.06)}
+.lang{appearance:none;-webkit-appearance:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c5d9e8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;background-position:right 12px center;border:1px solid var(--line);border-radius:999px;padding:8px 30px 8px 14px;cursor:pointer;transition:background .2s}
+html[dir="rtl"] .lang{background-position:left 12px center;padding:8px 14px 8px 30px}
+.lang:hover{background-color:rgba(255,255,255,.12)}
+.lang:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
+.lang option{background:#0c1526;color:var(--text)}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:999px;font-weight:600;font-size:1rem;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s;cursor:pointer;border:0;font-family:inherit}
 .btn-primary{background:var(--grad);color:#02101f;box-shadow:0 8px 30px -8px #40baffaa,inset 0 1px 0 #ffffff80}
 .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 14px 40px -8px #40baffcc,inset 0 1px 0 #ffffff80}
@@ -90,16 +100,17 @@ h1{font-size:clamp(2.7rem,8vw,6.2rem);line-height:1.02;letter-spacing:-.045em;fo
 .device.in{transform:rotateX(0) scale(1)}
 .screen{border-radius:18px;background:#050912;overflow:hidden;aspect-ratio:16/9.4;position:relative;display:grid;grid-template-rows:auto 1fr}
 .bar{display:flex;align-items:center;gap:6px;padding:12px 16px;margin:12px 12px 0;border-radius:16px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
-.bar img{width:22px;height:20px;margin-right:6px}
-.bar em{font-style:normal;font-size:.7rem;padding:6px 12px;border-radius:9px;color:var(--muted)}
+.bar img{width:22px;height:20px;margin-inline-end:6px}
+.bar em{font-style:normal;font-size:.7rem;padding:6px 12px;border-radius:9px;color:var(--muted);white-space:nowrap}
 .bar em.on{background:var(--sky);color:#021424;font-weight:700}
-.bar .sp{margin-left:auto;display:flex;gap:6px}
+.bar .sp{margin-inline-start:auto;display:flex;gap:6px}
 .bar .sp i{width:6px;height:6px;border-radius:50%;background:#ffffff40}
 .view{padding:14px 12px 12px;display:grid;grid-template-rows:1.35fr 1fr;gap:12px;min-height:0}
-.banner{border-radius:16px;position:relative;overflow:hidden;background:radial-gradient(120% 120% at 85% 20%,#2a6bff 0%,#143a7a 35%,#08122a 75%);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(12px,3vw,34px)}
-.banner::before{content:"";position:absolute;right:-6%;top:-20%;width:55%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#7dede566,transparent 65%)}
+.banner{border-radius:16px;position:relative;overflow:hidden;background:radial-gradient(120% 120% at 85% 20%,#2a6bff 0%,#143a7a 35%,#08122a 75%);display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(12px,3vw,34px);text-align:start}
+.banner::before{content:"";position:absolute;inset-inline-end:-6%;top:-20%;width:55%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#7dede566,transparent 65%)}
 .banner small{font-size:.6rem;letter-spacing:.2em;color:var(--mint);text-transform:uppercase;font-weight:600}
 .banner h3{font-size:clamp(1rem,3.4vw,2.2rem);letter-spacing:-.03em;margin:4px 0 10px}
+html[lang="ar"] .banner h3{letter-spacing:0}
 .banner .row{display:flex;gap:8px;align-items:center}
 .pill{font-size:.7rem;font-weight:700;padding:7px 14px;border-radius:9px;background:var(--sky);color:#021424}
 .pill.g{background:rgba(255,255,255,.14);color:#fff}
@@ -128,17 +139,18 @@ h2{font-size:clamp(2rem,5vw,3.6rem);line-height:1.06;letter-spacing:-.04em;font-
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
 .tile{position:relative;overflow:hidden;border-radius:var(--radius);padding:34px;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.015));border:1px solid var(--line);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end}
 .tile:hover{transform:translateY(-4px);border-color:rgba(64,186,255,.4)}
-.tile::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-80px;top:-100px;background:radial-gradient(circle,var(--glow,#40baff33),transparent 65%);transition:.5s}
+.tile::before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;inset-inline-end:-80px;top:-100px;background:radial-gradient(circle,var(--glow,#40baff33),transparent 65%);transition:.5s}
 .tile:hover::before{transform:scale(1.3)}
-.tile .ic{position:absolute;top:30px;left:34px;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#4884ff33,#7dede51f);border:1px solid rgba(125,237,229,.25);color:var(--mint)}
+.tile .ic{position:absolute;top:30px;inset-inline-start:34px;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#4884ff33,#7dede51f);border:1px solid rgba(125,237,229,.25);color:var(--mint)}
 .tile .ic svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tile h3{font-size:1.45rem;letter-spacing:-.03em;margin-bottom:8px;position:relative}
 .tile p{color:var(--muted);font-size:1rem;position:relative;max-width:34ch}
 .t-a{grid-column:span 4}.t-b{grid-column:span 2}
 .t-c{grid-column:span 2}.t-d{grid-column:span 2}.t-e{grid-column:span 2}
 .t-f{grid-column:span 3}.t-g{grid-column:span 3}
-.big-stat{position:absolute;right:34px;top:26px;font-size:clamp(2.2rem,4.6vw,3.8rem);font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.95}
-.keys{position:absolute;right:30px;top:30px;display:flex;gap:7px}
+.big-stat{position:absolute;inset-inline-end:34px;top:26px;font-size:clamp(2.2rem,4.6vw,3.8rem);font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.95}
+html[lang="ar"] .big-stat{letter-spacing:0}
+.keys{position:absolute;inset-inline-end:30px;top:30px;display:flex;gap:7px;direction:ltr}
 .keys kbd{font-family:var(--font);font-size:.85rem;font-weight:700;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#0d1730;border:1px solid rgba(255,255,255,.14);box-shadow:0 3px 0 #000,inset 0 1px 0 #ffffff1c;color:var(--ice)}
 
 /* platforms */
@@ -150,15 +162,16 @@ h2{font-size:clamp(2rem,5vw,3.6rem);line-height:1.06;letter-spacing:-.04em;font-
 .plat h3{font-size:2rem;letter-spacing:-.04em;margin:24px 0 4px}
 .plat .ver{color:var(--muted);font-size:.95rem;margin-bottom:22px}
 .plat ul{list-style:none;color:#b7c3da;font-size:.95rem;margin-bottom:30px;display:grid;gap:8px}
-.plat li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sky);margin-right:10px;vertical-align:middle}
+.plat li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--sky);margin-inline-end:10px;vertical-align:middle}
 .plat .btn{margin-top:auto;justify-content:center}
-.plat .note{font-size:.78rem;color:var(--muted);margin-top:14px}
-.plat svg.pi{width:54px;height:54px;stroke:url(#g);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-bottom:6px}
+.plat .alt{font-size:.85rem;margin-top:14px;text-align:center}
+.plat .alt a{color:var(--sky)}
+.plat .alt a:hover{text-decoration:underline}
 
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
 .step{padding:32px;border-radius:var(--radius);border:1px solid var(--line);background:rgba(255,255,255,.025);counter-increment:s}
-.step::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--grad);color:#02101f;font-weight:800;margin-bottom:22px;box-shadow:0 8px 24px -6px #40baffaa}
+.step::before{content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--grad);color:#02101f;font-weight:800;margin-bottom:22px;box-shadow:0 8px 24px -6px #40baffaa;direction:ltr}
 .step h3{font-size:1.3rem;letter-spacing:-.03em;margin-bottom:8px}
 .step p{color:var(--muted)}
 
@@ -204,6 +217,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   .tile h3{font-size:1.25rem}
   .platforms-mini{flex-direction:column;align-items:center;gap:6px}
   .btn{padding:13px 22px}
+  .nav .btn{display:none}
   .keys{display:none}
 }
 @media(prefers-reduced-motion:reduce){
@@ -222,10 +236,17 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
 <header class="nav">
   <div class="nav-in">
     <a class="logo" href="#top" aria-label="ApazPlayer"><img src="assets/apaz-bird.svg" alt=""><span class="wm"><b>apaz</b><i>player</i></span></a>
-    <a class="l" href="#fonctions">Fonctions</a>
-    <a class="l" href="#plateformes">Plateformes</a>
-    <a class="l" href="#demarrer">Démarrer</a>
-    <a class="btn btn-primary" href="#telecharger">Télécharger</a>
+    <a class="l" href="#fonctions" data-i18n="nav_features">Fonctions</a>
+    <a class="l" href="#plateformes" data-i18n="nav_platforms">Plateformes</a>
+    <a class="l" href="#demarrer" data-i18n="nav_start">Démarrer</a>
+    <select class="lang" id="lang" data-i18n-aria="lang_label" aria-label="Langue">
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="pt">Português</option>
+      <option value="ar">العربية</option>
+    </select>
+    <a class="btn btn-primary" href="#telecharger" data-i18n="nav_download">Télécharger</a>
   </div>
 </header>
 
@@ -233,30 +254,30 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   <!-- HERO -->
   <div class="hero">
     <div class="wrap">
-      <div class="bird-wrap"><img src="assets/apaz-bird.svg" alt="Logo ApazPlayer : un oiseau dont le cœur est une touche lecture"></div>
-      <span class="eyebrow">PS5 · Android TV · Windows</span>
-      <h1>Donnez des <span class="grad-text">ailes</span> à vos envies.</h1>
-      <p class="lead">Un lecteur multimédia au design épuré, identique sur tous vos écrans et pensé pour la télécommande et la manette. Vos sources, votre catalogue, sans fioritures.</p>
+      <div class="bird-wrap"><img src="assets/apaz-bird.svg" alt="" data-i18n-alt="hero_logo_alt"></div>
+      <span class="eyebrow" data-i18n="hero_eyebrow">PS5 · Android TV · Windows</span>
+      <h1><span data-i18n="hero_h1a">Donnez des </span><span class="grad-text" data-i18n="hero_h1b">ailes</span><span data-i18n="hero_h1c"> à vos envies.</span></h1>
+      <p class="lead" data-i18n="hero_lead"></p>
       <div class="cta">
-        <a class="btn btn-primary" href="#telecharger">Télécharger ApazPlayer
+        <a class="btn btn-primary" href="#telecharger"><span data-i18n="hero_cta1">Télécharger ApazPlayer</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0 0-5-5m5 5 5-5M5 20h14"/></svg></a>
-        <a class="btn btn-ghost" href="#fonctions">Découvrir</a>
+        <a class="btn btn-ghost" href="#fonctions" data-i18n="hero_cta2">Découvrir</a>
       </div>
-      <div class="platforms-mini"><span>Gratuit</span><span>Aucun compte à créer</span><span>Vos données restent sur votre appareil</span></div>
+      <div class="platforms-mini"><span data-i18n="chip1">Gratuit</span><span data-i18n="chip2">Aucun compte à créer</span><span data-i18n="chip3">Vos données restent sur votre appareil</span></div>
 
       <div class="stage">
         <div class="device" id="device">
           <div class="screen">
             <div class="bar">
               <img src="assets/apaz-bird.svg" alt="">
-              <em class="on">Accueil</em><em>TV en direct</em><em>Films</em><em>Séries</em><em>Ma liste</em><em>Sources</em>
+              <em class="on" data-i18n="bar1">Accueil</em><em data-i18n="bar2">TV en direct</em><em data-i18n="bar3">Films</em><em data-i18n="bar4">Séries</em><em data-i18n="bar5">Ma liste</em><em data-i18n="bar6">Sources</em>
               <div class="sp"><i></i><i></i><i></i></div>
             </div>
             <div class="view">
               <div class="banner">
-                <small>Reprendre la lecture</small>
-                <h3>Là où vous vous étiez arrêté</h3>
-                <div class="row"><span class="pill">▶ Regarder</span><span class="pill g">+</span><span class="pill g">i</span></div>
+                <small data-i18n="banner_small">Reprendre la lecture</small>
+                <h3 data-i18n="banner_h">Là où vous vous étiez arrêté</h3>
+                <div class="row"><span class="pill" data-i18n="banner_play">▶ Regarder</span><span class="pill g">+</span><span class="pill g">i</span></div>
                 <div class="prog"><i></i></div>
               </div>
               <div class="cards"><div class="card"></div><div class="card"></div><div class="card"></div><div class="card"></div><div class="card"></div></div>
@@ -271,54 +292,54 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   <section id="fonctions">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="kicker">Fonctions</span>
-        <h2>Tout ce qu'il faut. <span class="grad-text">Rien de plus.</span></h2>
-        <p>Une interface calme et lisible, où le contenu passe avant tout et où les commandes sont toujours au même endroit.</p>
+        <span class="kicker" data-i18n="f_kicker">Fonctions</span>
+        <h2><span data-i18n="f_h2a">Tout ce qu'il faut. </span><span class="grad-text" data-i18n="f_h2b">Rien de plus.</span></h2>
+        <p data-i18n="f_lead"></p>
       </div>
 
       <div class="bento">
         <article class="tile t-a rv">
           <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <div class="big-stat">1 interface</div>
-          <h3>Accueil, TV en direct, films, séries, favoris.</h3>
-          <p>Tout est réuni au même endroit, avec la même navigation sur PS5, Android TV et Windows.</p>
+          <div class="big-stat" data-i18n="t1_big">1 interface</div>
+          <h3 data-i18n="t1_h"></h3>
+          <p data-i18n="t1_p"></p>
         </article>
 
         <article class="tile t-b rv" style="--d:.08s;--glow:#7dede540">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 8v4l3 2"/></svg></div>
-          <h3>Reprise instantanée</h3>
-          <p>Reprenez exactement où vous en étiez, avec un historique séparé pour les films, épisodes et chaînes.</p>
+          <h3 data-i18n="t2_h"></h3>
+          <p data-i18n="t2_p"></p>
         </article>
 
         <article class="tile t-c rv" style="--glow:#4884ff40">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="m6 4 10 8-10 8zM19 5v14"/></svg></div>
-          <h3>Épisode suivant</h3>
-          <p>L'enchaînement automatique, activé par défaut, désactivable en un clic.</p>
+          <h3 data-i18n="t3_h"></h3>
+          <p data-i18n="t3_p"></p>
         </article>
 
         <article class="tile t-d rv" style="--d:.08s">
           <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4zM8 9h8M8 12h5"/></svg></div>
-          <h3>Audio &amp; sous-titres</h3>
-          <p>Vos langues préférées sont mémorisées sur chaque appareil.</p>
+          <h3 data-i18n="t4_h"></h3>
+          <p data-i18n="t4_p"></p>
         </article>
 
         <article class="tile t-e rv" style="--d:.16s;--glow:#7dede540">
           <div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
-          <h3>Guide TV</h3>
-          <p>« Maintenant » et « Ensuite » quand votre source le fournit.</p>
+          <h3 data-i18n="t5_h"></h3>
+          <p data-i18n="t5_p"></p>
         </article>
 
         <article class="tile t-f rv">
           <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div>
-          <h3>Dans votre langue</h3>
-          <p>Français et anglais sur Windows ; français, anglais, espagnol, portugais et arabe (lecture de droite à gauche) sur PS5.</p>
+          <h3 data-i18n="t6_h"></h3>
+          <p data-i18n="t6_p"></p>
         </article>
 
         <article class="tile t-g rv" style="--d:.08s;--glow:#4884ff40">
           <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10v5M4.5 12.5h5M16 11h.01M18.5 14h.01"/></svg></div>
           <div class="keys" aria-hidden="true"><kbd>A</kbd><kbd>S</kbd><kbd>N</kbd><kbd>F</kbd></div>
-          <h3>Télécommande, manette, clavier</h3>
-          <p>Un focus bien visible et des raccourcis simples : audio, sous-titres, épisode suivant, plein écran.</p>
+          <h3 data-i18n="t7_h"></h3>
+          <p data-i18n="t7_p"></p>
         </article>
       </div>
     </div>
@@ -328,31 +349,31 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   <section id="plateformes" style="padding-top:40px">
     <div class="wrap">
       <div class="sec-head c rv">
-        <span class="kicker">Plateformes</span>
-        <h2>Un seul lecteur, <span class="grad-text">tous vos écrans.</span></h2>
+        <span class="kicker" data-i18n="p_kicker">Plateformes</span>
+        <h2><span data-i18n="p_h2a">Un seul lecteur, </span><span class="grad-text" data-i18n="p_h2b">tous vos écrans.</span></h2>
       </div>
       <div class="plats" id="telecharger">
         <article class="plat rv">
-          <span class="tag">Version stable</span>
+          <span class="tag" data-i18n="win_tag">Version stable</span>
           <h3>Windows</h3>
-          <div class="ver">Version 0.8.3 · Windows 10 / 11 (x64)</div>
-          <ul><li>Installateur (.exe)</li><li>Lecture native MPV</li><li>Raccourcis clavier complets</li></ul>
-          <a class="btn btn-primary" href="https://github.com/apazplayertv/apazplayer/releases/download/windows-v0.8.3/ApazPlayer-Setup-0.8.3-Windows-x64.exe">Télécharger</a>
-          <p class="note"><a href="https://github.com/apazplayertv/apazplayer/releases/download/windows-v0.8.3/ApazPlayer-Portable-0.8.3-Windows-x64.exe" style="color:var(--sky)">Version portable (.exe, sans installation)</a></p>
+          <div class="ver" data-i18n="win_ver"></div>
+          <ul><li data-i18n="win_li1"></li><li data-i18n="win_li2"></li><li data-i18n="win_li3"></li></ul>
+          <a class="btn btn-primary" href="https://github.com/apazplayertv/apazplayer/releases/download/windows-v0.8.3/ApazPlayer-Setup-0.8.3-Windows-x64.exe" data-i18n="dl">Télécharger</a>
+          <p class="alt"><a href="https://github.com/apazplayertv/apazplayer/releases/download/windows-v0.8.3/ApazPlayer-Portable-0.8.3-Windows-x64.exe" data-i18n="win_portable">Version portable (.exe, sans installation)</a></p>
         </article>
         <article class="plat rv" style="--d:.1s">
-          <span class="tag beta">Version de test</span>
-          <h3>Android &amp; TV</h3>
-          <div class="ver">Version 0.4.0 · Android 8+ / Google TV</div>
-          <ul><li>Optimisé pour Android TV</li><li>Fichier .apk</li><li>Fonctionne aussi sur mobile</li></ul>
-          <a class="btn btn-primary" href="https://github.com/apazplayertv/apazplayer/releases/download/android-v0.4.0/ApazPlayer-Android-TV-0.4.0-test.apk">Télécharger</a>
+          <span class="tag beta" data-i18n="and_tag">Version de test</span>
+          <h3 data-i18n="and_name">Android &amp; TV</h3>
+          <div class="ver" data-i18n="and_ver"></div>
+          <ul><li data-i18n="and_li1"></li><li data-i18n="and_li2"></li><li data-i18n="and_li3"></li></ul>
+          <a class="btn btn-primary" href="https://github.com/apazplayertv/apazplayer/releases/download/android-v0.4.0/ApazPlayer-Android-TV-0.4.0-test.apk" data-i18n="dl">Télécharger</a>
         </article>
         <article class="plat rv" style="--d:.2s">
-          <span class="tag">Version stable</span>
+          <span class="tag" data-i18n="ps_tag">Version stable</span>
           <h3>PS5</h3>
-          <div class="ver">Version 0.3.1 · Dossier PPSA88127</div>
-          <ul><li>Interface pensée pour la manette</li><li>5 langues, dont l'arabe</li><li>Archive .zip</li></ul>
-          <a class="btn btn-primary" href="https://github.com/apazplayertv/apazplayer/releases/download/ps5-v0.3.1/ApazPlayer-PS5-0.3.1-test.zip">Télécharger</a>
+          <div class="ver" data-i18n="ps_ver"></div>
+          <ul><li data-i18n="ps_li1"></li><li data-i18n="ps_li2"></li><li data-i18n="ps_li3"></li></ul>
+          <a class="btn btn-primary" href="https://github.com/apazplayertv/apazplayer/releases/download/ps5-v0.3.1/ApazPlayer-PS5-0.3.1-test.zip" data-i18n="dl">Télécharger</a>
         </article>
       </div>
     </div>
@@ -362,13 +383,13 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   <section id="demarrer">
     <div class="wrap">
       <div class="sec-head c rv">
-        <span class="kicker">Démarrer</span>
-        <h2>Prêt en <span class="grad-text">trois étapes.</span></h2>
+        <span class="kicker" data-i18n="s_kicker">Démarrer</span>
+        <h2><span data-i18n="s_h2a">Prêt en </span><span class="grad-text" data-i18n="s_h2b">trois étapes.</span></h2>
       </div>
       <div class="steps">
-        <div class="step rv"><h3>Installez</h3><p>Téléchargez la version de votre appareil et installez-la par-dessus la précédente pour conserver vos données.</p></div>
-        <div class="step rv" style="--d:.1s"><h3>Ajoutez votre source</h3><p>Sources → Ajouter une source. Collez l'URL de votre playlist M3U ou saisissez votre compte Xtream.</p></div>
-        <div class="step rv" style="--d:.2s"><h3>Profitez</h3><p>Votre catalogue s'organise tout seul. Lancez la lecture, ApazPlayer se souvient du reste.</p></div>
+        <div class="step rv"><h3 data-i18n="s1_h"></h3><p data-i18n="s1_p"></p></div>
+        <div class="step rv" style="--d:.1s"><h3 data-i18n="s2_h"></h3><p data-i18n="s2_p"></p></div>
+        <div class="step rv" style="--d:.2s"><h3 data-i18n="s3_h"></h3><p data-i18n="s3_p"></p></div>
       </div>
     </div>
   </section>
@@ -378,9 +399,9 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
     <div class="wrap">
       <div class="priv rv">
         <div class="shield"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 4.5 3.2 7.8 8 9 4.8-1.2 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
-        <span class="kicker">Confidentialité</span>
-        <h2>Chez vous. <span class="grad-text">Et nulle part ailleurs.</span></h2>
-        <p>Vos sources, favoris et historique restent sur votre appareil. Identifiants et liens sont chiffrés localement. ApazPlayer est un lecteur : il ne fournit, n'héberge et ne vend aucun contenu.</p>
+        <span class="kicker" data-i18n="pv_kicker">Confidentialité</span>
+        <h2><span data-i18n="pv_h2a">Chez vous. </span><span class="grad-text" data-i18n="pv_h2b">Et nulle part ailleurs.</span></h2>
+        <p data-i18n="pv_p"></p>
       </div>
     </div>
   </section>
@@ -389,9 +410,9 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   <section class="final">
     <div class="wrap">
       <div class="bird-wrap rv"><img src="assets/apaz-bird.svg" alt=""></div>
-      <h2 class="rv">Prenez votre <span class="grad-text">envol.</span></h2>
-      <div class="cta rv"><a class="btn btn-primary" href="#telecharger">Télécharger ApazPlayer</a>
-      <a class="btn btn-ghost" href="https://github.com/apazplayertv/apazplayer">Voir sur GitHub</a></div>
+      <h2 class="rv"><span data-i18n="fin_h2a">Prenez votre </span><span class="grad-text" data-i18n="fin_h2b">envol.</span></h2>
+      <div class="cta rv"><a class="btn btn-primary" href="#telecharger" data-i18n="fin_btn1">Télécharger ApazPlayer</a>
+      <a class="btn btn-ghost" href="https://github.com/apazplayertv/apazplayer" data-i18n="fin_btn2">Voir sur GitHub</a></div>
     </div>
   </section>
 </main>
@@ -400,21 +421,283 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   <div class="wrap foot">
     <div>
       <a class="logo" href="#top"><img src="assets/apaz-bird.svg" alt=""><span class="wm"><b>apaz</b><i>player</i></span></a>
-      <p>ApazPlayer est un lecteur multimédia. Il ne fournit, n'héberge ni ne vend aucun contenu : vous êtes responsable d'avoir le droit d'utiliser vos sources. Les versions ne sont pas signées par un store.</p>
+      <p data-i18n="foot_p"></p>
     </div>
     <nav>
-      <a href="https://github.com/apazplayertv/apazplayer/releases">Versions</a>
-      <a href="https://github.com/apazplayertv/apazplayer">GitHub</a>
+      <a href="https://github.com/apazplayertv/apazplayer/releases" data-i18n="foot_versions">Versions</a>
+      <a href="https://github.com/apazplayertv/apazplayer" data-i18n="foot_github">GitHub</a>
     </nav>
   </div>
 </footer>
 
 <script>
 (function(){
+  var T={
+    fr:{
+      meta_title:"ApazPlayer — Donnez des ailes à vos envies",
+      meta_desc:"ApazPlayer, le lecteur multimédia au design épuré pour PS5, Android TV et Windows. Une seule interface, pensée pour la télécommande et la manette.",
+      og_desc:"Le lecteur multimédia au design épuré pour PS5, Android TV et Windows.",
+      lang_label:"Langue",
+      nav_features:"Fonctions",nav_platforms:"Plateformes",nav_start:"Démarrer",nav_download:"Télécharger",
+      hero_logo_alt:"Logo ApazPlayer : un oiseau dont le cœur est une touche lecture",
+      hero_eyebrow:"PS5 · Android TV · Windows",
+      hero_h1a:"Donnez des ",hero_h1b:"ailes",hero_h1c:" à vos envies.",
+      hero_lead:"Un lecteur multimédia au design épuré, identique sur tous vos écrans et pensé pour la télécommande et la manette. Vos sources, votre catalogue, sans fioritures.",
+      hero_cta1:"Télécharger ApazPlayer",hero_cta2:"Découvrir",
+      chip1:"Gratuit",chip2:"Aucun compte à créer",chip3:"Vos données restent sur votre appareil",
+      bar1:"Accueil",bar2:"TV en direct",bar3:"Films",bar4:"Séries",bar5:"Ma liste",bar6:"Sources",
+      banner_small:"Reprendre la lecture",banner_h:"Là où vous vous étiez arrêté",banner_play:"▶ Regarder",
+      f_kicker:"Fonctions",f_h2a:"Tout ce qu'il faut. ",f_h2b:"Rien de plus.",
+      f_lead:"Une interface calme et lisible, où le contenu passe avant tout et où les commandes sont toujours au même endroit.",
+      t1_big:"1 interface",t1_h:"Accueil, TV en direct, films, séries, favoris.",t1_p:"Tout est réuni au même endroit, avec la même navigation sur PS5, Android TV et Windows.",
+      t2_h:"Reprise instantanée",t2_p:"Reprenez exactement où vous en étiez, avec un historique séparé pour les films, épisodes et chaînes.",
+      t3_h:"Épisode suivant",t3_p:"L'enchaînement automatique, activé par défaut, désactivable en un clic.",
+      t4_h:"Audio & sous-titres",t4_p:"Vos langues préférées sont mémorisées sur chaque appareil.",
+      t5_h:"Guide TV",t5_p:"« Maintenant » et « Ensuite » quand votre source le fournit.",
+      t6_h:"Dans votre langue",t6_p:"Français et anglais sur Windows ; français, anglais, espagnol, portugais et arabe (lecture de droite à gauche) sur PS5.",
+      t7_h:"Télécommande, manette, clavier",t7_p:"Un focus bien visible et des raccourcis simples : audio, sous-titres, épisode suivant, plein écran.",
+      p_kicker:"Plateformes",p_h2a:"Un seul lecteur, ",p_h2b:"tous vos écrans.",
+      win_tag:"Version stable",win_ver:"Version 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Installateur (.exe)",win_li2:"Lecture native MPV",win_li3:"Raccourcis clavier complets",win_portable:"Version portable (.exe, sans installation)",
+      and_tag:"Version de test",and_name:"Android & TV",and_ver:"Version 0.4.0 · Android 8+ / Google TV",and_li1:"Optimisé pour Android TV",and_li2:"Fichier .apk",and_li3:"Fonctionne aussi sur mobile",
+      ps_tag:"Version stable",ps_ver:"Version 0.3.1 · Dossier PPSA88127",ps_li1:"Interface pensée pour la manette",ps_li2:"5 langues, dont l'arabe",ps_li3:"Archive .zip",
+      dl:"Télécharger",
+      s_kicker:"Démarrer",s_h2a:"Prêt en ",s_h2b:"trois étapes.",
+      s1_h:"Installez",s1_p:"Téléchargez la version de votre appareil et installez-la par-dessus la précédente pour conserver vos données.",
+      s2_h:"Ajoutez votre source",s2_p:"Sources → Ajouter une source. Collez l'URL de votre playlist M3U ou saisissez votre compte Xtream.",
+      s3_h:"Profitez",s3_p:"Votre catalogue s'organise tout seul. Lancez la lecture, ApazPlayer se souvient du reste.",
+      pv_kicker:"Confidentialité",pv_h2a:"Chez vous. ",pv_h2b:"Et nulle part ailleurs.",
+      pv_p:"Vos sources, favoris et historique restent sur votre appareil. Identifiants et liens sont chiffrés localement. ApazPlayer est un lecteur : il ne fournit, n'héberge et ne vend aucun contenu.",
+      fin_h2a:"Prenez votre ",fin_h2b:"envol.",fin_btn1:"Télécharger ApazPlayer",fin_btn2:"Voir sur GitHub",
+      foot_p:"ApazPlayer est un lecteur multimédia. Il ne fournit, n'héberge ni ne vend aucun contenu : vous êtes responsable d'avoir le droit d'utiliser vos sources. Les versions ne sont pas signées par un store.",
+      foot_versions:"Versions",foot_github:"GitHub"
+    },
+    en:{
+      meta_title:"ApazPlayer — Give your ambitions wings",
+      meta_desc:"ApazPlayer, the media player with a clean design for PS5, Android TV and Windows. One interface, designed for the remote and the controller.",
+      og_desc:"The media player with a clean design for PS5, Android TV and Windows.",
+      lang_label:"Language",
+      nav_features:"Features",nav_platforms:"Platforms",nav_start:"Get started",nav_download:"Download",
+      hero_logo_alt:"ApazPlayer logo: a bird with a play button at its heart",
+      hero_eyebrow:"PS5 · Android TV · Windows",
+      hero_h1a:"Give your ambitions ",hero_h1b:"wings",hero_h1c:".",
+      hero_lead:"A media player with a clean design, identical on all your screens and built for the remote and the controller. Your sources, your catalogue, nothing superfluous.",
+      hero_cta1:"Download ApazPlayer",hero_cta2:"Discover",
+      chip1:"Free",chip2:"No account needed",chip3:"Your data stays on your device",
+      bar1:"Home",bar2:"Live TV",bar3:"Movies",bar4:"Series",bar5:"My list",bar6:"Sources",
+      banner_small:"Resume watching",banner_h:"Pick up right where you left off",banner_play:"▶ Watch",
+      f_kicker:"Features",f_h2a:"Everything you need. ",f_h2b:"Nothing more.",
+      f_lead:"A calm, readable interface where content comes first and the controls always stay in the same place.",
+      t1_big:"1 interface",t1_h:"Home, Live TV, movies, series, favourites.",t1_p:"Everything in one place, with the same navigation on PS5, Android TV and Windows.",
+      t2_h:"Instant resume",t2_p:"Pick up exactly where you left off, with a separate history for movies, episodes and channels.",
+      t3_h:"Next episode",t3_p:"Automatic chaining, on by default, switch it off in one click.",
+      t4_h:"Audio & subtitles",t4_p:"Your preferred languages are remembered on each device.",
+      t5_h:"TV guide",t5_p:"\"Now\" and \"Next\" whenever your source provides them.",
+      t6_h:"In your language",t6_p:"French and English on Windows; French, English, Spanish, Portuguese and Arabic (right-to-left) on PS5.",
+      t7_h:"Remote, controller, keyboard",t7_p:"A clearly visible focus and simple shortcuts: audio, subtitles, next episode, fullscreen.",
+      p_kicker:"Platforms",p_h2a:"One player, ",p_h2b:"all your screens.",
+      win_tag:"Stable version",win_ver:"Version 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Installer (.exe)",win_li2:"Native MPV playback",win_li3:"Full keyboard shortcuts",win_portable:"Portable version (.exe, no installation)",
+      and_tag:"Test version",and_name:"Android & TV",and_ver:"Version 0.4.0 · Android 8+ / Google TV",and_li1:"Optimised for Android TV",and_li2:".apk file",and_li3:"Also works on mobile",
+      ps_tag:"Stable version",ps_ver:"Version 0.3.1 · PPSA88127 folder",ps_li1:"Interface designed for the controller",ps_li2:"5 languages, including Arabic",ps_li3:".zip archive",
+      dl:"Download",
+      s_kicker:"Get started",s_h2a:"Ready in ",s_h2b:"three steps.",
+      s1_h:"Install",s1_p:"Download the version for your device and install it over the previous one to keep your data.",
+      s2_h:"Add your source",s2_p:"Sources → Add a source. Paste your M3U playlist URL or enter your Xtream account.",
+      s3_h:"Enjoy",s3_p:"Your catalogue organises itself. Start playback and ApazPlayer remembers the rest.",
+      pv_kicker:"Privacy",pv_h2a:"At home. ",pv_h2b:"And nowhere else.",
+      pv_p:"Your sources, favourites and history stay on your device. Credentials and links are encrypted locally. ApazPlayer is a player: it provides, hosts and sells no content.",
+      fin_h2a:"Take your ",fin_h2b:"flight.",fin_btn1:"Download ApazPlayer",fin_btn2:"View on GitHub",
+      foot_p:"ApazPlayer is a media player. It provides, hosts and sells no content: you are responsible for having the right to use your sources. Versions are not signed by a store.",
+      foot_versions:"Releases",foot_github:"GitHub"
+    },
+    es:{
+      meta_title:"ApazPlayer — Dale alas a tus ganas",
+      meta_desc:"ApazPlayer, el reproductor multimedia de diseño limpio para PS5, Android TV y Windows. Una sola interfaz, pensada para el mando a distancia y el mando de juego.",
+      og_desc:"El reproductor multimedia de diseño limpio para PS5, Android TV y Windows.",
+      lang_label:"Idioma",
+      nav_features:"Funciones",nav_platforms:"Plataformas",nav_start:"Empezar",nav_download:"Descargar",
+      hero_logo_alt:"Logo de ApazPlayer: un pájaro con un botón de reproducción en el corazón",
+      hero_eyebrow:"PS5 · Android TV · Windows",
+      hero_h1a:"Dale ",hero_h1b:"alas",hero_h1c:" a tus ganas.",
+      hero_lead:"Un reproductor multimedia de diseño limpio, idéntico en todas tus pantallas y pensado para el mando a distancia y el mando de juego. Tus fuentes, tu catálogo, sin adornos.",
+      hero_cta1:"Descargar ApazPlayer",hero_cta2:"Descubrir",
+      chip1:"Gratis",chip2:"Sin crear cuenta",chip3:"Tus datos se quedan en tu dispositivo",
+      bar1:"Inicio",bar2:"TV en directo",bar3:"Películas",bar4:"Series",bar5:"Mi lista",bar6:"Fuentes",
+      banner_small:"Seguir viendo",banner_h:"Retoma justo donde lo dejaste",banner_play:"▶ Ver",
+      f_kicker:"Funciones",f_h2a:"Todo lo necesario. ",f_h2b:"Nada más.",
+      f_lead:"Una interfaz tranquila y legible, donde el contenido va primero y los controles siempre están en el mismo sitio.",
+      t1_big:"1 interfaz",t1_h:"Inicio, TV en directo, películas, series, favoritos.",t1_p:"Todo reunido en un solo lugar, con la misma navegación en PS5, Android TV y Windows.",
+      t2_h:"Reanudación instantánea",t2_p:"Continúa exactamente donde lo dejaste, con historial separado para películas, episodios y canales.",
+      t3_h:"Episodio siguiente",t3_p:"Encadenado automático, activado por defecto, desactivable con un clic.",
+      t4_h:"Audio y subtítulos",t4_p:"Tus idiomas preferidos se recuerdan en cada dispositivo.",
+      t5_h:"Guía de TV",t5_p:"«Ahora» y «Después» cuando tu fuente lo ofrece.",
+      t6_h:"En tu idioma",t6_p:"Francés e inglés en Windows; francés, inglés, español, portugués y árabe (de derecha a izquierda) en PS5.",
+      t7_h:"Mando, control, teclado",t7_p:"Un foco bien visible y atajos sencillos: audio, subtítulos, episodio siguiente, pantalla completa.",
+      p_kicker:"Plataformas",p_h2a:"Un solo reproductor, ",p_h2b:"todas tus pantallas.",
+      win_tag:"Versión estable",win_ver:"Versión 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Instalador (.exe)",win_li2:"Reproducción nativa MPV",win_li3:"Atajos de teclado completos",win_portable:"Versión portable (.exe, sin instalación)",
+      and_tag:"Versión de prueba",and_name:"Android y TV",and_ver:"Versión 0.4.0 · Android 8+ / Google TV",and_li1:"Optimizado para Android TV",and_li2:"Archivo .apk",and_li3:"También funciona en el móvil",
+      ps_tag:"Versión estable",ps_ver:"Versión 0.3.1 · Carpeta PPSA88127",ps_li1:"Interfaz pensada para el mando",ps_li2:"5 idiomas, incluido el árabe",ps_li3:"Archivo .zip",
+      dl:"Descargar",
+      s_kicker:"Empezar",s_h2a:"Listo en ",s_h2b:"tres pasos.",
+      s1_h:"Instala",s1_p:"Descarga la versión de tu dispositivo e instálala sobre la anterior para conservar tus datos.",
+      s2_h:"Añade tu fuente",s2_p:"Fuentes → Añadir una fuente. Pega la URL de tu lista M3U o introduce tu cuenta Xtream.",
+      s3_h:"Disfruta",s3_p:"Tu catálogo se organiza solo. Empieza a reproducir y ApazPlayer recuerda el resto.",
+      pv_kicker:"Privacidad",pv_h2a:"En tu casa. ",pv_h2b:"Y en ningún otro sitio.",
+      pv_p:"Tus fuentes, favoritos e historial se quedan en tu dispositivo. Credenciales y enlaces se cifran localmente. ApazPlayer es un reproductor: no proporciona, aloja ni vende contenido.",
+      fin_h2a:"Emprende tu ",fin_h2b:"vuelo.",fin_btn1:"Descargar ApazPlayer",fin_btn2:"Ver en GitHub",
+      foot_p:"ApazPlayer es un reproductor multimedia. No proporciona, no aloja ni vende contenido: eres responsable de tener derecho a usar tus fuentes. Las versiones no están firmadas por una tienda.",
+      foot_versions:"Versiones",foot_github:"GitHub"
+    },
+    pt:{
+      meta_title:"ApazPlayer — Dê asas às suas vontades",
+      meta_desc:"ApazPlayer, o leitor multimídia de design limpo para PS5, Android TV e Windows. Uma só interface, pensada para o controle remoto e o controle de jogo.",
+      og_desc:"O leitor multimídia de design limpo para PS5, Android TV e Windows.",
+      lang_label:"Idioma",
+      nav_features:"Recursos",nav_platforms:"Plataformas",nav_start:"Começar",nav_download:"Baixar",
+      hero_logo_alt:"Logotipo do ApazPlayer: um pássaro com um botão de play no centro",
+      hero_eyebrow:"PS5 · Android TV · Windows",
+      hero_h1a:"Dê ",hero_h1b:"asas",hero_h1c:" às suas vontades.",
+      hero_lead:"Um leitor multimídia de design limpo, idêntico em todas as suas telas e pensado para o controle remoto e o controle de jogo. Suas fontes, seu catálogo, sem excessos.",
+      hero_cta1:"Baixar ApazPlayer",hero_cta2:"Descobrir",
+      chip1:"Grátis",chip2:"Sem criar conta",chip3:"Seus dados ficam no seu dispositivo",
+      bar1:"Início",bar2:"TV ao vivo",bar3:"Filmes",bar4:"Séries",bar5:"Minha lista",bar6:"Fontes",
+      banner_small:"Continuar assistindo",banner_h:"Retome exatamente de onde parou",banner_play:"▶ Assistir",
+      f_kicker:"Recursos",f_h2a:"Tudo o que é preciso. ",f_h2b:"Nada além disso.",
+      f_lead:"Uma interface calma e legível, em que o conteúdo vem primeiro e os comandos ficam sempre no mesmo lugar.",
+      t1_big:"1 interface",t1_h:"Início, TV ao vivo, filmes, séries, favoritos.",t1_p:"Tudo reunido no mesmo lugar, com a mesma navegação em PS5, Android TV e Windows.",
+      t2_h:"Retomada instantânea",t2_p:"Continue exatamente de onde parou, com histórico separado para filmes, episódios e canais.",
+      t3_h:"Próximo episódio",t3_p:"Encadeamento automático, ativado por padrão, desligável com um clique.",
+      t4_h:"Áudio e legendas",t4_p:"Seus idiomas preferidos são lembrados em cada dispositivo.",
+      t5_h:"Guia de TV",t5_p:"«Agora» e «Próximo» quando a sua fonte oferecer.",
+      t6_h:"No seu idioma",t6_p:"Francês e inglês no Windows; francês, inglês, espanhol, português e árabe (da direita para a esquerda) no PS5.",
+      t7_h:"Controle remoto, controle de jogo, teclado",t7_p:"Foco bem visível e atalhos simples: áudio, legendas, próximo episódio, tela cheia.",
+      p_kicker:"Plataformas",p_h2a:"Um só leitor, ",p_h2b:"todas as suas telas.",
+      win_tag:"Versão estável",win_ver:"Versão 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Instalador (.exe)",win_li2:"Reprodução nativa MPV",win_li3:"Atalhos de teclado completos",win_portable:"Versão portátil (.exe, sem instalação)",
+      and_tag:"Versão de teste",and_name:"Android e TV",and_ver:"Versão 0.4.0 · Android 8+ / Google TV",and_li1:"Otimizado para Android TV",and_li2:"Arquivo .apk",and_li3:"Também funciona no celular",
+      ps_tag:"Versão estável",ps_ver:"Versão 0.3.1 · Pasta PPSA88127",ps_li1:"Interface pensada para o controle de jogo",ps_li2:"5 idiomas, incluindo árabe",ps_li3:"Arquivo .zip",
+      dl:"Baixar",
+      s_kicker:"Começar",s_h2a:"Pronto em ",s_h2b:"três passos.",
+      s1_h:"Instale",s1_p:"Baixe a versão do seu dispositivo e instale por cima da anterior para manter seus dados.",
+      s2_h:"Adicione sua fonte",s2_p:"Fontes → Adicionar uma fonte. Cole o URL da sua lista M3U ou informe sua conta Xtream.",
+      s3_h:"Aproveite",s3_p:"Seu catálogo se organiza sozinho. Inicie a reprodução e o ApazPlayer lembra o resto.",
+      pv_kicker:"Privacidade",pv_h2a:"Na sua casa. ",pv_h2b:"E em nenhum outro lugar.",
+      pv_p:"Suas fontes, favoritos e histórico ficam no seu dispositivo. Credenciais e links são criptografados localmente. O ApazPlayer é um leitor: não fornece, não hospeda e não vende conteúdo.",
+      fin_h2a:"Alce o seu ",fin_h2b:"voo.",fin_btn1:"Baixar ApazPlayer",fin_btn2:"Ver no GitHub",
+      foot_p:"O ApazPlayer é um leitor multimídia. Não fornece, não hospeda nem vende conteúdo: você é responsável por ter o direito de usar suas fontes. As versões não são assinadas por uma loja.",
+      foot_versions:"Versões",foot_github:"GitHub"
+    },
+    ar:{
+      meta_title:"ApazPlayer — امنح طموحاتك أجنحة",
+      meta_desc:"ApazPlayer مشغّل وسائط بتصميم أنيق لأجهزة PS5 وAndroid TV وWindows. واجهة واحدة مصممة للتحكم عن بُعد وذراع التحكم.",
+      og_desc:"مشغّل وسائط بتصميم أنيق لأجهزة PS5 وAndroid TV وWindows.",
+      lang_label:"اللغة",
+      nav_features:"المميزات",nav_platforms:"المنصات",nav_start:"ابدأ",nav_download:"تحميل",
+      hero_logo_alt:"شعار ApazPlayer: طائر يحمل زر تشغيل في قلبه",
+      hero_eyebrow:"PS5 · Android TV · Windows",
+      hero_h1a:"امنح طموحاتك ",hero_h1b:"أجنحة",hero_h1c:".",
+      hero_lead:"مشغّل وسائط بتصميم أنيق، متطابق على جميع شاشاتك، ومصمم للتحكم عن بُعد وذراع الألعاب. مصادرك، ومكتبتك، دون تعقيد.",
+      hero_cta1:"تحميل ApazPlayer",hero_cta2:"اكتشف",
+      chip1:"مجاني",chip2:"بدون إنشاء حساب",chip3:"بياناتك تبقى على جهازك",
+      bar1:"الرئيسية",bar2:"البث المباشر",bar3:"الأفلام",bar4:"المسلسلات",bar5:"قائمتي",bar6:"المصادر",
+      banner_small:"متابعة المشاهدة",banner_h:"تابع من حيث توقفت",banner_play:"▶ شاهد",
+      f_kicker:"المميزات",f_h2a:"كل ما تحتاجه. ",f_h2b:"ولا شيء زائد.",
+      f_lead:"واجهة هادئة وواضحة، يأتي فيها المحتوى أولاً وتبقى الأوامر دائماً في مكانها.",
+      t1_big:"واجهة واحدة",t1_h:"الرئيسية، البث المباشر، الأفلام، المسلسلات، المفضلة.",t1_p:"كل شيء في مكان واحد، مع التنقل نفسه على PS5 وAndroid TV وWindows.",
+      t2_h:"استئناف فوري",t2_p:"تابع من النقطة نفسها، مع سجل منفصل للأفلام والحلقات والقنوات.",
+      t3_h:"الحلقة التالية",t3_p:"تشغيل تلقائي للحلقة التالية، مفعّل افتراضياً، ويمكن إيقافه بنقرة واحدة.",
+      t4_h:"الصوت والترجمة",t4_p:"تُحفظ لغاتك المفضلة على كل جهاز.",
+      t5_h:"دليل البرامج",t5_p:"«الآن» و«التالي» عندما يوفّرهما مصدرك.",
+      t6_h:"بلغتك",t6_p:"الفرنسية والإنجليزية على Windows؛ والفرنسية والإنجليزية والإسبانية والبرتغالية والعربية (من اليمين إلى اليسار) على PS5.",
+      t7_h:"التحكم عن بُعد وذراع التحكم ولوحة المفاتيح",t7_p:"تركيز واضح واختصارات بسيطة: الصوت والترجمة والحلقة التالية وملء الشاشة.",
+      p_kicker:"المنصات",p_h2a:"مشغّل واحد، ",p_h2b:"على جميع شاشاتك.",
+      win_tag:"إصدار مستقر",win_ver:"الإصدار 0.8.3 · Windows 10 / 11 (x64)",win_li1:"مثبّت (.exe)",win_li2:"تشغيل أصلي عبر MPV",win_li3:"اختصارات لوحة مفاتيح كاملة",win_portable:"النسخة المحمولة (.exe، بدون تثبيت)",
+      and_tag:"نسخة تجريبية",and_name:"Android وTV",and_ver:"الإصدار 0.4.0 · Android 8+ / Google TV",and_li1:"مُحسّن لـ Android TV",and_li2:"ملف .apk",and_li3:"يعمل أيضاً على الهاتف",
+      ps_tag:"إصدار مستقر",ps_ver:"الإصدار 0.3.1 · مجلد PPSA88127",ps_li1:"واجهة مصممة لذراع التحكم",ps_li2:"5 لغات، من بينها العربية",ps_li3:"أرشيف .zip",
+      dl:"تحميل",
+      s_kicker:"ابدأ",s_h2a:"جاهز في ",s_h2b:"ثلاث خطوات.",
+      s1_h:"ثبّت",s1_p:"حمّل النسخة المناسبة لجهازك وثبّتها فوق النسخة السابقة للحفاظ على بياناتك.",
+      s2_h:"أضف مصدرك",s2_p:"المصادر ← إضافة مصدر. الصق رابط قائمة M3U أو أدخل حساب Xtream.",
+      s3_h:"استمتع",s3_p:"تُنظّم مكتبتك نفسها تلقائياً. ابدأ التشغيل وسيتذكر ApazPlayer الباقي.",
+      pv_kicker:"الخصوصية",pv_h2a:"في منزلك. ",pv_h2b:"ولا في أي مكان آخر.",
+      pv_p:"تبقى مصادرك ومفضلاتك وسجلك على جهازك. تُشفَّر بيانات الدخول والروابط محلياً. ApazPlayer مشغّل فقط: لا يوفّر محتوى ولا يستضيفه ولا يبيعه.",
+      fin_h2a:"حلّق ",fin_h2b:"بعيداً.",fin_btn1:"تحميل ApazPlayer",fin_btn2:"عرض على GitHub",
+      foot_p:"ApazPlayer مشغّل وسائط. لا يوفّر أي محتوى ولا يستضيفه ولا يبيعه: أنت مسؤول عن امتلاك حق استخدام مصادرك. الإصدارات غير موقّعة من متجر.",
+      foot_versions:"الإصدارات",foot_github:"GitHub"
+    }
+  };
+
+  var SUPPORTED=['fr','en','es','pt','ar'];
+  var KEY='apaz-lang';
+  var sel=document.getElementById('lang');
+
+  function stored(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+  function save(l){try{localStorage.setItem(KEY,l)}catch(e){}}
+  function browserLang(){
+    var list=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'en'];
+    for(var i=0;i<list.length;i++){
+      var n=String(list[i]).slice(0,2).toLowerCase();
+      if(SUPPORTED.indexOf(n)>-1) return n;
+    }
+    return 'en';
+  }
+  function reveal(){document.documentElement.classList.remove('pending')}
+  function setMeta(sel,val){var el=document.querySelector(sel);if(el)el.setAttribute('content',val)}
+
+  function apply(l){
+    var d=T[l];
+    document.documentElement.lang=l;
+    document.documentElement.dir=(l==='ar')?'rtl':'ltr';
+    document.documentElement.setAttribute('data-lang',l);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var v=d[el.getAttribute('data-i18n')];
+      if(v!==undefined) el.textContent=v;
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function(el){
+      var v=d[el.getAttribute('data-i18n-alt')]; if(v!==undefined) el.setAttribute('alt',v);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      var v=d[el.getAttribute('data-i18n-aria')]; if(v!==undefined) el.setAttribute('aria-label',v);
+    });
+    document.title=d.meta_title;
+    setMeta('meta[name="description"]',d.meta_desc);
+    setMeta('meta[property="og:title"]',d.meta_title);
+    setMeta('meta[property="og:description"]',d.og_desc);
+    if(sel) sel.value=l;
+  }
+
+  var current='en';
+  var saved=stored();
+  if(saved&&SUPPORTED.indexOf(saved)>-1){
+    current=saved; apply(current); reveal();
+  }else{
+    // Pas de choix mémorisé : on suit le pays de connexion (fonction /api/lang),
+    // à défaut la langue du navigateur.
+    var done=false;
+    var finish=function(l){
+      if(done) return; done=true;
+      current=l; apply(l); reveal();
+    };
+    var timer=setTimeout(function(){finish(browserLang())},1500);
+    fetch('/api/lang',{cache:'no-store'})
+      .then(function(r){return r.ok?r.json():null})
+      .then(function(j){
+        clearTimeout(timer);
+        finish(j&&SUPPORTED.indexOf(j.lang)>-1?j.lang:browserLang());
+      })
+      .catch(function(){clearTimeout(timer);finish(browserLang())});
+  }
+
+  if(sel){
+    sel.addEventListener('change',function(){
+      current=sel.value; apply(current); save(current);
+    });
+  }
+
   var els=document.querySelectorAll('.rv,.device');
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-  els.forEach(function(e){io.observe(e)});
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});}
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(e){io.observe(e)});
+  }
   setTimeout(function(){var d=document.getElementById('device');if(d)d.classList.add('in')},300);
 })();
 </script>
