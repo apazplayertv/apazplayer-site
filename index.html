@@ -69,6 +69,13 @@ html[lang="ar"] h1,html[lang="ar"] h2{letter-spacing:0}
 .nav a.l:hover{color:var(--text);background:rgba(255,255,255,.06)}
 .lang{appearance:none;-webkit-appearance:none;font:inherit;font-size:.82rem;font-weight:600;color:var(--text);background:rgba(255,255,255,.06) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23c5d9e8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat;background-position:right 12px center;border:1px solid var(--line);border-radius:999px;padding:8px 30px 8px 14px;cursor:pointer;transition:background .2s}
 html[dir="rtl"] .lang{background-position:left 12px center;padding:8px 14px 8px 30px}
+.amb{display:inline-grid;place-items:center;width:36px;height:36px;padding:0;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--muted,#9fb3c8);cursor:pointer;transition:background .2s,color .2s}
+.amb:hover{background:rgba(255,255,255,.12);color:var(--text)}
+.amb svg{width:17px;height:17px}
+.amb .ic-on{display:none}
+.amb.is-on{color:#7dede5}
+.amb.is-on .ic-on{display:block}
+.amb.is-on .ic-off{display:none}
 .lang:hover{background-color:rgba(255,255,255,.12)}
 .lang:focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 .lang option{background:#0c1526;color:var(--text)}
@@ -263,6 +270,10 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
     <a class="l" href="#fonctions" data-i18n="nav_features">Fonctions</a>
     <a class="l" href="#plateformes" data-i18n="nav_platforms">Plateformes</a>
     <a class="l" href="#demarrer" data-i18n="nav_start">Démarrer</a>
+    <button class="amb" id="ambBtn" type="button" data-i18n-aria="amb_label" aria-label="Ambiance sonore des oiseaux" aria-pressed="false" title="Ambiance sonore des oiseaux">
+      <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6m0-6 6 6"/></svg>
+      <svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+    </button>
     <select class="lang" id="lang" data-i18n-aria="lang_label" aria-label="Langue">
       <option value="fr">Français</option>
       <option value="en">English</option>
@@ -477,7 +488,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Version stable",win_ver:"Version 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Installateur (.exe)",win_li2:"Lecture native MPV",win_li3:"Raccourcis clavier complets",win_portable:"Version portable (.exe, sans installation)",
       and_tag:"Version de test",and_name:"Android & TV",and_ver:"Version 0.4.0 · Android 8+ / Google TV",and_li1:"Optimisé pour Android TV",and_li2:"Fichier .apk",and_li3:"Fonctionne aussi sur mobile",
       ps_tag:"Version stable",ps_ver:"Version 0.3.1 · Dossier PPSA88127",ps_li1:"Interface pensée pour la manette",ps_li2:"5 langues, dont l'arabe",ps_li3:"Archive .zip",
-      dl:"Télécharger",video_sound:"Regarder avec le son",video_label:"Vidéo de présentation d'ApazPlayer",
+      dl:"Télécharger",video_sound:"Regarder avec le son",amb_label:"Ambiance sonore des oiseaux",video_label:"Vidéo de présentation d'ApazPlayer",
       s_kicker:"Démarrer",s_h2a:"Prêt en ",s_h2b:"trois étapes.",
       s1_h:"Installez",s1_p:"Téléchargez la version de votre appareil et installez-la par-dessus la précédente pour conserver vos données.",
       s2_h:"Ajoutez votre source",s2_p:"Sources → Ajouter une source. Collez l'URL de votre playlist M3U ou saisissez votre compte Xtream.",
@@ -515,7 +526,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Stable version",win_ver:"Version 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Installer (.exe)",win_li2:"Native MPV playback",win_li3:"Full keyboard shortcuts",win_portable:"Portable version (.exe, no installation)",
       and_tag:"Test version",and_name:"Android & TV",and_ver:"Version 0.4.0 · Android 8+ / Google TV",and_li1:"Optimised for Android TV",and_li2:".apk file",and_li3:"Also works on mobile",
       ps_tag:"Stable version",ps_ver:"Version 0.3.1 · PPSA88127 folder",ps_li1:"Interface designed for the controller",ps_li2:"5 languages, including Arabic",ps_li3:".zip archive",
-      dl:"Download",video_sound:"Watch with sound",video_label:"ApazPlayer presentation video",
+      dl:"Download",video_sound:"Watch with sound",amb_label:"Bird ambience sound",video_label:"ApazPlayer presentation video",
       s_kicker:"Get started",s_h2a:"Ready in ",s_h2b:"three steps.",
       s1_h:"Install",s1_p:"Download the version for your device and install it over the previous one to keep your data.",
       s2_h:"Add your source",s2_p:"Sources → Add a source. Paste your M3U playlist URL or enter your Xtream account.",
@@ -553,7 +564,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Versión estable",win_ver:"Versión 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Instalador (.exe)",win_li2:"Reproducción nativa MPV",win_li3:"Atajos de teclado completos",win_portable:"Versión portable (.exe, sin instalación)",
       and_tag:"Versión de prueba",and_name:"Android y TV",and_ver:"Versión 0.4.0 · Android 8+ / Google TV",and_li1:"Optimizado para Android TV",and_li2:"Archivo .apk",and_li3:"También funciona en el móvil",
       ps_tag:"Versión estable",ps_ver:"Versión 0.3.1 · Carpeta PPSA88127",ps_li1:"Interfaz pensada para el mando",ps_li2:"5 idiomas, incluido el árabe",ps_li3:"Archivo .zip",
-      dl:"Descargar",video_sound:"Ver con sonido",video_label:"Vídeo de presentación de ApazPlayer",
+      dl:"Descargar",video_sound:"Ver con sonido",amb_label:"Sonido ambiental de pájaros",video_label:"Vídeo de presentación de ApazPlayer",
       s_kicker:"Empezar",s_h2a:"Listo en ",s_h2b:"tres pasos.",
       s1_h:"Instala",s1_p:"Descarga la versión de tu dispositivo e instálala sobre la anterior para conservar tus datos.",
       s2_h:"Añade tu fuente",s2_p:"Fuentes → Añadir una fuente. Pega la URL de tu lista M3U o introduce tu cuenta Xtream.",
@@ -591,7 +602,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Versão estável",win_ver:"Versão 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Instalador (.exe)",win_li2:"Reprodução nativa MPV",win_li3:"Atalhos de teclado completos",win_portable:"Versão portátil (.exe, sem instalação)",
       and_tag:"Versão de teste",and_name:"Android e TV",and_ver:"Versão 0.4.0 · Android 8+ / Google TV",and_li1:"Otimizado para Android TV",and_li2:"Arquivo .apk",and_li3:"Também funciona no celular",
       ps_tag:"Versão estável",ps_ver:"Versão 0.3.1 · Pasta PPSA88127",ps_li1:"Interface pensada para o controle de jogo",ps_li2:"5 idiomas, incluindo árabe",ps_li3:"Arquivo .zip",
-      dl:"Baixar",video_sound:"Assistir com som",video_label:"Vídeo de apresentação do ApazPlayer",
+      dl:"Baixar",video_sound:"Assistir com som",amb_label:"Som ambiente de pássaros",video_label:"Vídeo de apresentação do ApazPlayer",
       s_kicker:"Começar",s_h2a:"Pronto em ",s_h2b:"três passos.",
       s1_h:"Instale",s1_p:"Baixe a versão do seu dispositivo e instale por cima da anterior para manter seus dados.",
       s2_h:"Adicione sua fonte",s2_p:"Fontes → Adicionar uma fonte. Cole o URL da sua lista M3U ou informe sua conta Xtream.",
@@ -629,7 +640,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"إصدار مستقر",win_ver:"الإصدار 0.8.3 · Windows 10 / 11 (x64)",win_li1:"مثبّت (.exe)",win_li2:"تشغيل أصلي عبر MPV",win_li3:"اختصارات لوحة مفاتيح كاملة",win_portable:"النسخة المحمولة (.exe، بدون تثبيت)",
       and_tag:"نسخة تجريبية",and_name:"Android وTV",and_ver:"الإصدار 0.4.0 · Android 8+ / Google TV",and_li1:"مُحسّن لـ Android TV",and_li2:"ملف .apk",and_li3:"يعمل أيضاً على الهاتف",
       ps_tag:"إصدار مستقر",ps_ver:"الإصدار 0.3.1 · مجلد PPSA88127",ps_li1:"واجهة مصممة لذراع التحكم",ps_li2:"5 لغات، من بينها العربية",ps_li3:"أرشيف .zip",
-      dl:"تحميل",video_sound:"شاهد مع الصوت",video_label:"فيديو تقديمي لـ ApazPlayer",
+      dl:"تحميل",video_sound:"شاهد مع الصوت",amb_label:"أصوات الطيور الهادئة",video_label:"فيديو تقديمي لـ ApazPlayer",
       s_kicker:"ابدأ",s_h2a:"جاهز في ",s_h2b:"ثلاث خطوات.",
       s1_h:"ثبّت",s1_p:"حمّل النسخة المناسبة لجهازك وثبّتها فوق النسخة السابقة للحفاظ على بياناتك.",
       s2_h:"أضف مصدرك",s2_p:"المصادر ← إضافة مصدر. الصق رابط قائمة M3U أو أدخل حساب Xtream.",
@@ -709,6 +720,104 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       current=sel.value; apply(current); save(current);
     });
   }
+
+  // Ambiance : chants d'oiseaux synthétisés (aucun fichier audio), très discrets.
+  // Les navigateurs interdisent le son avant une action de l'utilisateur :
+  // l'ambiance démarre donc au premier clic, toucher ou appui sur une touche.
+  (function(){
+    var btn=document.getElementById('ambBtn');
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(!btn) return;
+    if(!AC){ btn.style.display='none'; return; }
+    var on=true;
+    try{ on=localStorage.getItem('apaz-amb')!=='off'; }catch(e){}
+    var ctx=null, master=null, timer=null;
+    function setBtn(){ btn.classList.toggle('is-on',on); btn.setAttribute('aria-pressed',on?'true':'false'); }
+
+    function ensure(){
+      if(ctx) return;
+      ctx=new AC();
+      master=ctx.createGain(); master.gain.value=0;
+      var tone=ctx.createBiquadFilter(); tone.type='lowpass'; tone.frequency.value=5200;
+      // écho léger pour une sensation d'espace
+      var delay=ctx.createDelay(1); delay.delayTime.value=0.3;
+      var fb=ctx.createGain(); fb.gain.value=0.28;
+      var echo=ctx.createGain(); echo.gain.value=0.35;
+      master.connect(tone); tone.connect(ctx.destination);
+      tone.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(echo); echo.connect(ctx.destination);
+    }
+    function chirp(t,f0,f1,dur,vol,pan){
+      var o=ctx.createOscillator(), g=ctx.createGain(), p=ctx.createStereoPanner?ctx.createStereoPanner():null;
+      o.type='sine';
+      o.frequency.setValueAtTime(f0,t);
+      o.frequency.exponentialRampToValueAtTime(f1,t+dur);
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(vol,t+dur*0.25);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+      o.connect(g);
+      if(p){ p.pan.value=pan; g.connect(p); p.connect(master); } else g.connect(master);
+      o.start(t); o.stop(t+dur+0.05);
+    }
+    // Un appel d'oiseau : trille, sifflement montant ou gazouillis. Renvoie sa durée.
+    function phrase(t){
+      var r=Math.random(), v=0.05+Math.random()*0.03, base=2300+Math.random()*1600;
+      var pan=(Math.random()*2-1)*0.6, d=0, i, n;
+      if(r<0.45){
+        n=4+Math.floor(Math.random()*4);
+        for(i=0;i<n;i++){ chirp(t+d,base,base*(1.08+Math.random()*0.1),0.07,v,pan); d+=0.075+Math.random()*0.04; }
+      } else if(r<0.8){
+        n=2+Math.floor(Math.random()*2);
+        for(i=0;i<n;i++){ chirp(t+d,base*0.7,base,0.32,v,pan); d+=0.42+Math.random()*0.2; }
+      } else {
+        n=3+Math.floor(Math.random()*3);
+        for(i=0;i<n;i++){ chirp(t+d,base*(0.9+Math.random()*0.3),base*(1+Math.random()*0.4),0.11,v*0.9,pan); d+=0.13+Math.random()*0.09; }
+      }
+      return d;
+    }
+    // Un appel toutes les 4 à 12 secondes environ.
+    function next(){
+      timer=null;
+      if(!on||!ctx||document.hidden) return;
+      var d=phrase(ctx.currentTime+0.1);
+      timer=setTimeout(next,(d+4+Math.random()*8)*1000);
+    }
+    function start(){
+      if(!on) return;
+      ensure();
+      if(ctx.state==='suspended') ctx.resume();
+      master.gain.cancelScheduledValues(ctx.currentTime);
+      master.gain.setTargetAtTime(0.8,ctx.currentTime,1.5);
+      if(!timer) timer=setTimeout(next,2000);
+    }
+    function stop(){
+      clearTimeout(timer); timer=null;
+      if(master){ master.gain.cancelScheduledValues(ctx.currentTime); master.gain.setTargetAtTime(0,ctx.currentTime,0.4); }
+    }
+
+    // Démarrage au premier geste de l'utilisateur (règle des navigateurs).
+    var events=['pointerdown','touchend','keydown','click'];
+    function firstGesture(){
+      events.forEach(function(e){ document.removeEventListener(e,firstGesture,true); });
+      start();
+    }
+    events.forEach(function(e){ document.addEventListener(e,firstGesture,{capture:true,passive:true}); });
+
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      on=!on;
+      try{ localStorage.setItem('apaz-amb',on?'on':'off'); }catch(err){}
+      setBtn();
+      if(on) start(); else stop();
+    });
+
+    document.addEventListener('visibilitychange',function(){
+      if(!ctx) return;
+      if(document.hidden){ ctx.suspend(); clearTimeout(timer); timer=null; }
+      else if(on){ ctx.resume(); if(!timer) timer=setTimeout(next,1500); }
+    });
+
+    setBtn();
+  })();
 
   // Vidéo de présentation : boucle muette quand elle est visible,
   // bouton « avec le son » pour la relancer depuis le début avec la musique.
