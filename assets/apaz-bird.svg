@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 64" fill="none">
+  <defs>
+    <linearGradient id="wing" x1="5" y1="7" x2="39" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#C8F4FF"/><stop offset="1" stop-color="#4884FF"/></linearGradient>
+    <linearGradient id="body" x1="62" y1="22" x2="17" y2="55" gradientUnits="userSpaceOnUse"><stop stop-color="#7DEDE5"/><stop offset=".48" stop-color="#40BAFF"/><stop offset="1" stop-color="#4870F4"/></linearGradient>
+    <mask id="play"><path fill="white" d="M0 0h72v64H0z"/><path fill="black" d="m35 32 10 5-10 5z"/></mask>
+  </defs>
+  <path d="M5 7c15 2 29 10 37 22L28 38C25 24 13 18 5 7Z" fill="url(#wing)"/>
+  <path d="m5 27 24 9-8 8C14 40 9 34 5 27Z" fill="#427CEB"/>
+  <path d="m12 57 14-21 10-6 5-7c4-6 12-6 16 1l10 5-12 3c-4 10-15 17-30 18L12 57Z" fill="url(#body)" mask="url(#play)"/>
+</svg>
