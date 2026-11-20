@@ -99,6 +99,13 @@ h1{font-size:clamp(2.7rem,8vw,6.2rem);line-height:1.02;letter-spacing:-.045em;fo
 .stage::after{content:"";position:absolute;left:8%;right:8%;bottom:-30px;height:80px;background:radial-gradient(ellipse,#40baff40,transparent 70%);filter:blur(30px)}
 .device{position:relative;margin:0 auto;width:min(1020px,100%);border-radius:26px;padding:10px;background:linear-gradient(160deg,#1c2a44,#0a1020 40%,#0f1a30);border:1px solid rgba(255,255,255,.12);box-shadow:0 60px 120px -30px #000,0 0 0 1px #000,0 0 100px -30px #40baff66;transform:rotateX(9deg) scale(.96);transition:transform .9s cubic-bezier(.2,.8,.2,1);transform-origin:50% 100%}
 .device.in{transform:rotateX(0) scale(1)}
+.vscreen{position:relative;border-radius:18px;overflow:hidden;aspect-ratio:16/9;background:#050912}
+.vscreen video{display:block;width:100%;height:100%;object-fit:cover}
+.sound-btn{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(10,16,30,.62);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);color:var(--text);font:inherit;font-weight:600;font-size:.95rem;cursor:pointer;transition:opacity .4s ease,background .2s ease}
+.sound-btn:hover{background:rgba(10,16,30,.85)}
+.sound-btn:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.sound-btn svg{width:20px;height:20px;flex-shrink:0}
+.vscreen.with-sound .sound-btn{opacity:0;pointer-events:none}
 .screen{border-radius:18px;background:#050912;overflow:hidden;aspect-ratio:16/9.4;position:relative;display:grid;grid-template-rows:auto 1fr}
 .bar{display:flex;align-items:center;gap:6px;padding:12px 16px;margin:12px 12px 0;border-radius:16px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
 .bar img{width:22px;height:20px;margin-inline-end:6px}
@@ -233,6 +240,9 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   .platforms-mini{flex-direction:column;align-items:center;gap:6px}
   .btn{padding:13px 22px}
   .nav .btn{display:none}
+  .sound-btn{bottom:12px;padding:9px 16px;font-size:.82rem;gap:8px}
+  .sound-btn svg{width:17px;height:17px}
+  .vscreen{border-radius:14px}
   .keys{display:none}
 }
 @media(prefers-reduced-motion:reduce){
@@ -282,21 +292,12 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
 
       <div class="stage">
         <div class="device" id="device">
-          <div class="screen">
-            <div class="bar">
-              <img src="assets/apaz-bird.svg" alt="">
-              <em class="on" data-i18n="bar1">Accueil</em><em data-i18n="bar2">TV en direct</em><em data-i18n="bar3">Films</em><em data-i18n="bar4">Séries</em><em data-i18n="bar5">Ma liste</em><em data-i18n="bar6">Sources</em>
-              <div class="sp"><i></i><i></i><i></i></div>
-            </div>
-            <div class="view">
-              <div class="banner">
-                <small data-i18n="banner_small">Reprendre la lecture</small>
-                <h3 data-i18n="banner_h">Là où vous vous étiez arrêté</h3>
-                <div class="row"><span class="pill" data-i18n="banner_play">▶ Regarder</span><span class="pill g">+</span><span class="pill g">i</span></div>
-                <div class="prog"><i></i></div>
-              </div>
-              <div class="cards"><div class="card"></div><div class="card"></div><div class="card"></div><div class="card"></div><div class="card"></div></div>
-            </div>
+          <div class="vscreen" id="vscreen">
+            <video id="promo" muted loop playsinline preload="metadata" poster="assets/presentation-poster.jpg" data-i18n-aria="video_label" aria-label="Vidéo de présentation d'ApazPlayer"></video>
+            <button class="sound-btn" id="soundBtn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+              <span data-i18n="video_sound">Regarder avec le son</span>
+            </button>
           </div>
         </div>
       </div>
@@ -477,7 +478,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Version stable",win_ver:"Version 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Installateur (.exe)",win_li2:"Lecture native MPV",win_li3:"Raccourcis clavier complets",win_portable:"Version portable (.exe, sans installation)",
       and_tag:"Version de test",and_name:"Android & TV",and_ver:"Version 0.4.0 · Android 8+ / Google TV",and_li1:"Optimisé pour Android TV",and_li2:"Fichier .apk",and_li3:"Fonctionne aussi sur mobile",
       ps_tag:"Version stable",ps_ver:"Version 0.3.1 · Dossier PPSA88127",ps_li1:"Interface pensée pour la manette",ps_li2:"5 langues, dont l'arabe",ps_li3:"Archive .zip",
-      dl:"Télécharger",
+      dl:"Télécharger",video_sound:"Regarder avec le son",video_label:"Vidéo de présentation d'ApazPlayer",
       s_kicker:"Démarrer",s_h2a:"Prêt en ",s_h2b:"trois étapes.",
       s1_h:"Installez",s1_p:"Téléchargez la version de votre appareil et installez-la par-dessus la précédente pour conserver vos données.",
       s2_h:"Ajoutez votre source",s2_p:"Sources → Ajouter une source. Collez l'URL de votre playlist M3U ou saisissez votre compte Xtream.",
@@ -515,7 +516,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Stable version",win_ver:"Version 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Installer (.exe)",win_li2:"Native MPV playback",win_li3:"Full keyboard shortcuts",win_portable:"Portable version (.exe, no installation)",
       and_tag:"Test version",and_name:"Android & TV",and_ver:"Version 0.4.0 · Android 8+ / Google TV",and_li1:"Optimised for Android TV",and_li2:".apk file",and_li3:"Also works on mobile",
       ps_tag:"Stable version",ps_ver:"Version 0.3.1 · PPSA88127 folder",ps_li1:"Interface designed for the controller",ps_li2:"5 languages, including Arabic",ps_li3:".zip archive",
-      dl:"Download",
+      dl:"Download",video_sound:"Watch with sound",video_label:"ApazPlayer presentation video",
       s_kicker:"Get started",s_h2a:"Ready in ",s_h2b:"three steps.",
       s1_h:"Install",s1_p:"Download the version for your device and install it over the previous one to keep your data.",
       s2_h:"Add your source",s2_p:"Sources → Add a source. Paste your M3U playlist URL or enter your Xtream account.",
@@ -553,7 +554,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Versión estable",win_ver:"Versión 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Instalador (.exe)",win_li2:"Reproducción nativa MPV",win_li3:"Atajos de teclado completos",win_portable:"Versión portable (.exe, sin instalación)",
       and_tag:"Versión de prueba",and_name:"Android y TV",and_ver:"Versión 0.4.0 · Android 8+ / Google TV",and_li1:"Optimizado para Android TV",and_li2:"Archivo .apk",and_li3:"También funciona en el móvil",
       ps_tag:"Versión estable",ps_ver:"Versión 0.3.1 · Carpeta PPSA88127",ps_li1:"Interfaz pensada para el mando",ps_li2:"5 idiomas, incluido el árabe",ps_li3:"Archivo .zip",
-      dl:"Descargar",
+      dl:"Descargar",video_sound:"Ver con sonido",video_label:"Vídeo de presentación de ApazPlayer",
       s_kicker:"Empezar",s_h2a:"Listo en ",s_h2b:"tres pasos.",
       s1_h:"Instala",s1_p:"Descarga la versión de tu dispositivo e instálala sobre la anterior para conservar tus datos.",
       s2_h:"Añade tu fuente",s2_p:"Fuentes → Añadir una fuente. Pega la URL de tu lista M3U o introduce tu cuenta Xtream.",
@@ -591,7 +592,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"Versão estável",win_ver:"Versão 0.8.3 · Windows 10 / 11 (x64)",win_li1:"Instalador (.exe)",win_li2:"Reprodução nativa MPV",win_li3:"Atalhos de teclado completos",win_portable:"Versão portátil (.exe, sem instalação)",
       and_tag:"Versão de teste",and_name:"Android e TV",and_ver:"Versão 0.4.0 · Android 8+ / Google TV",and_li1:"Otimizado para Android TV",and_li2:"Arquivo .apk",and_li3:"Também funciona no celular",
       ps_tag:"Versão estável",ps_ver:"Versão 0.3.1 · Pasta PPSA88127",ps_li1:"Interface pensada para o controle de jogo",ps_li2:"5 idiomas, incluindo árabe",ps_li3:"Arquivo .zip",
-      dl:"Baixar",
+      dl:"Baixar",video_sound:"Assistir com som",video_label:"Vídeo de apresentação do ApazPlayer",
       s_kicker:"Começar",s_h2a:"Pronto em ",s_h2b:"três passos.",
       s1_h:"Instale",s1_p:"Baixe a versão do seu dispositivo e instale por cima da anterior para manter seus dados.",
       s2_h:"Adicione sua fonte",s2_p:"Fontes → Adicionar uma fonte. Cole o URL da sua lista M3U ou informe sua conta Xtream.",
@@ -629,7 +630,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       win_tag:"إصدار مستقر",win_ver:"الإصدار 0.8.3 · Windows 10 / 11 (x64)",win_li1:"مثبّت (.exe)",win_li2:"تشغيل أصلي عبر MPV",win_li3:"اختصارات لوحة مفاتيح كاملة",win_portable:"النسخة المحمولة (.exe، بدون تثبيت)",
       and_tag:"نسخة تجريبية",and_name:"Android وTV",and_ver:"الإصدار 0.4.0 · Android 8+ / Google TV",and_li1:"مُحسّن لـ Android TV",and_li2:"ملف .apk",and_li3:"يعمل أيضاً على الهاتف",
       ps_tag:"إصدار مستقر",ps_ver:"الإصدار 0.3.1 · مجلد PPSA88127",ps_li1:"واجهة مصممة لذراع التحكم",ps_li2:"5 لغات، من بينها العربية",ps_li3:"أرشيف .zip",
-      dl:"تحميل",
+      dl:"تحميل",video_sound:"شاهد مع الصوت",video_label:"فيديو تقديمي لـ ApazPlayer",
       s_kicker:"ابدأ",s_h2a:"جاهز في ",s_h2b:"ثلاث خطوات.",
       s1_h:"ثبّت",s1_p:"حمّل النسخة المناسبة لجهازك وثبّتها فوق النسخة السابقة للحفاظ على بياناتك.",
       s2_h:"أضف مصدرك",s2_p:"المصادر ← إضافة مصدر. الصق رابط قائمة M3U أو أدخل حساب Xtream.",
@@ -708,6 +709,37 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       current=sel.value; apply(current); save(current);
     });
   }
+
+  // Vidéo de présentation : boucle muette quand elle est visible,
+  // bouton « avec le son » pour la relancer depuis le début avec la musique.
+  (function(){
+    var v=document.getElementById('promo'), btn=document.getElementById('soundBtn'), box=document.getElementById('vscreen');
+    if(!v||!btn||!box) return;
+    var conn=navigator.connection||{};
+    var small=window.innerWidth<900||conn.saveData;
+    v.src=small?'assets/presentation-720.mp4':'assets/presentation-1080.mp4';
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var auto=!reduce&&!conn.saveData;
+    if(auto&&'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){es.forEach(function(e){
+        if(box.classList.contains('with-sound')) return;
+        if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+        else v.pause();
+      });},{threshold:.35}).observe(v);
+    }
+    btn.addEventListener('click',function(){
+      box.classList.add('with-sound');
+      v.loop=false; v.muted=false; v.controls=true;
+      try{v.currentTime=0}catch(e){}
+      var p=v.play();if(p&&p.catch)p.catch(function(){});
+    });
+    v.addEventListener('ended',function(){
+      if(!box.classList.contains('with-sound')) return;
+      box.classList.remove('with-sound');
+      v.controls=false; v.muted=true; v.loop=true;
+      if(auto){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+    });
+  })();
 
   // Menu : s'estompe en descendant, réapparaît doucement en remontant.
   (function(){
