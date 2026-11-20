@@ -740,16 +740,6 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
       master=ctx.createGain(); master.gain.value=0;
       var tone=ctx.createBiquadFilter(); tone.type='lowpass'; tone.frequency.value=3000; tone.Q.value=0.4;
       master.connect(tone); tone.connect(ctx.destination);
-      // fond sonore continu : bruissement de vent et de feuillages (bruit brun filtré, qui ondule doucement)
-      var len=ctx.sampleRate*4, buf=ctx.createBuffer(1,len,ctx.sampleRate), data=buf.getChannelData(0), last=0;
-      for(var i=0;i<len;i++){ last=(last+0.02*(Math.random()*2-1))/1.02; data[i]=last*3.5; }
-      var src=ctx.createBufferSource(); src.buffer=buf; src.loop=true;
-      var nf=ctx.createBiquadFilter(); nf.type='lowpass'; nf.frequency.value=1000;
-      var wind=ctx.createGain(); wind.gain.value=0.3;
-      var swell=ctx.createOscillator(), swellGain=ctx.createGain();
-      swell.frequency.value=0.05; swellGain.gain.value=0.12;
-      swell.connect(swellGain); swellGain.connect(wind.gain); swell.start();
-      src.connect(nf); nf.connect(wind); wind.connect(master); src.start();
     }
     function chirp(t,f0,f1,dur,vol,pan){
       var o=ctx.createOscillator(), g=ctx.createGain(), p=ctx.createStereoPanner?ctx.createStereoPanner():null;
@@ -765,7 +755,7 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
     }
     // Un appel d'oiseau : trille, sifflement montant ou gazouillis. Renvoie sa durée.
     function phrase(t){
-      var r=Math.random(), v=0.05+Math.random()*0.03, base=2000+Math.random()*1800;
+      var r=Math.random(), v=0.03+Math.random()*0.02, base=2000+Math.random()*1800;
       var pan=(Math.random()*2-1)*0.5, d=0, i, n;
       if(r<0.45){
         n=3+Math.floor(Math.random()*3);
