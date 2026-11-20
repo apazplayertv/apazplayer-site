@@ -190,8 +190,11 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
   .wrap{width:calc(100% - 32px)}
   .cards{grid-template-columns:repeat(3,1fr)}.card:nth-child(n+4){display:none}
   .bar em:nth-child(n+5){display:none}
-  .tile{padding:26px;min-height:220px}
-  .tile .ic{left:26px;top:24px}
+  .tile{padding:26px;min-height:0;gap:0}
+  .tile .ic{position:static;margin-bottom:18px}
+  .tile .big-stat{position:static;font-size:2.3rem;margin-bottom:14px}
+  .tile h3{font-size:1.25rem}
+  .platforms-mini{flex-direction:column;align-items:center;gap:6px}
   .btn{padding:13px 22px}
   .keys{display:none}
 }
