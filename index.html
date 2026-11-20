@@ -209,8 +209,22 @@ footer{border-top:1px solid var(--line);padding:42px 0 56px;color:var(--muted);f
 }
 @media(max-width:560px){
   .wrap{width:calc(100% - 32px)}
-  .cards{grid-template-columns:repeat(3,1fr)}.card:nth-child(n+4){display:none}
-  .bar em:nth-child(n+5){display:none}
+  .device{padding:6px;border-radius:20px}
+  .screen{aspect-ratio:auto;border-radius:14px}
+  .bar{margin:8px 8px 0;padding:7px 8px;gap:3px;border-radius:12px}
+  .bar img{width:16px;height:15px;margin-inline-end:2px}
+  .bar .sp{display:none}
+  .bar em{font-size:.6rem;padding:5px 7px}
+  .bar em:nth-child(n+4){display:none}
+  .view{padding:8px;gap:8px;grid-template-rows:auto auto}
+  .banner{min-height:150px;padding:14px;justify-content:flex-end}
+  .banner h3{font-size:1.05rem;margin:2px 0 8px;line-height:1.2}
+  .banner small{font-size:.5rem}
+  .banner .row{gap:6px}
+  .pill{font-size:.6rem;padding:6px 10px}
+  .prog{margin-top:8px}
+  .cards{grid-template-columns:repeat(3,1fr);height:64px}
+  .card:nth-child(n+4){display:none}
   .tile{padding:26px;min-height:0;gap:0}
   .tile .ic{position:static;margin-bottom:18px}
   .tile .big-stat{position:static;font-size:2.3rem;margin-bottom:14px}
